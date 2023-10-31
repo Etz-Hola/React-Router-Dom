@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Header from './Header'
 import Nav from './Nav'
@@ -11,7 +11,8 @@ import Footer from './Footer'
 
 const App = () => {
 
-  const 
+  const [search, setSearch] = useState([])
+  const [post, setPost] = useState()
   return (
     <div className='App'>
       <Header title='DLT Student Blog'/>
