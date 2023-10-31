@@ -1,8 +1,22 @@
 import React from 'react'
 
-const Nav = () => {
+const Nav = ({search, setSearch}) => {
   return (
-    <div>Nav</div>
+    <nav className='Nav'>
+
+        <form className='searchForm' onSubmit={(e) => e.preventDefault()}>
+            <label htmlFor='search'>
+                Search Post
+            </label>
+
+            <input type='text' id='search' placeholder='Search Posts' value={search} onChange={(e) => 
+            setSearch(e.target.value)} />
+        </form>
+        <ul>
+            
+        </ul>
+
+    </nav>
   )
 }
 

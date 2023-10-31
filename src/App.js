@@ -12,7 +12,7 @@ import Footer from './Footer'
 const App = () => {
   return (
     <div className='App'>
-      <Header />
+      <Header title='DLT Student Blog'/>
       <Nav/>
       <Routes>
         <Route path='/' element={<Home/>} />
