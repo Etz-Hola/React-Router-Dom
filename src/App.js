@@ -25,18 +25,7 @@ const App = () => {
       date: 'July 19, 2024 04:11:36 PM',
       body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, aspernatur!'
     },
-    {
-      id:3,
-      title: 'Kanas',
-      date: 'September 28, 2021 01:17:36 AM',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis voluptates incidunt inventore doloribus!'
-    },
-    {
-      id:4,
-      title: 'Muaz',
-      date: 'August 17, 2020 06:55:55 PM',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis voluptates incidunt inventore doloribus?'
-    }
+    
 
   ])
   const [searchResult, setSearchResult] = useState([])
