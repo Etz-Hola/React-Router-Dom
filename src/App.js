@@ -11,8 +11,9 @@ import Footer from './Footer'
 
 const App = () => {
 
-  const [search, setSearch] = useState([])
+  const [search, setSearch] = useState('')
   const [post, setPost] = useState()
+  const [seatchResult, setSearchResult] = useState()
   return (
     <div className='App'>
       <Header title='DLT Student Blog'/>
