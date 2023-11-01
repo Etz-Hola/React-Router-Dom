@@ -10,7 +10,7 @@ import HomeLayout from './HomeLayout';
 
 const App = () => {
 
-  const [search, setSearch] = useState('')
+ 
   const [posts, setPosts] = useState([
     {
       id:1,
@@ -38,7 +38,10 @@ const App = () => {
     }
 
   ])
+   const [search, setSearch] = useState('')
   const [searchResult, setSearchResult ] = useState([])
+  const [postTitle, setPostTitle] = useState('')
+  const [postBody, setPostBody] = useState('')
 
   const navigate = useNavigate();
 
@@ -47,6 +50,9 @@ const App = () => {
     setPosts(postLists)
     navigate('/')
   }
+  const handleSubmit = () => {
+    
+  }
 
   return (
       <Routes>
@@ -54,7 +60,13 @@ const App = () => {
               <Route index element={<Home posts={posts} />} />
 
               <Route path='/post' >
-                  <Route index element={<NewPost/>} />
+                  <Route index element={<NewPost
+                    postTitle={postTitle}
+                    setPostTitle={setPostTitle}
+                    postBody={postBody}
+                    setPostBody={setPostBody}
+                    handleSubmit={handleSubmit}                  
+                  />} />
                   <Route path=':id' element={<PostPage posts={posts} handleDelete={handleDelete}/>} />            
               </Route>
 
