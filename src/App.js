@@ -33,9 +33,9 @@ const App = () => {
     },
     {
       id:4,
-      title: 'Olalekan',
+      title: 'C++',
       date: 'August 17, 2020 06:55:55 PM',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis voluptates incidunt inventore doloribus?'
+      body: 'C++ is an object-oriented programming language which gives a clear structure to programs and allows code to be reused, lowering development costs. C++ is portable and can be used to develop applications that can be adapted to multiple platforms. C++ is fun and easy to learn!'
     }
 
   ])
