@@ -1,8 +1,9 @@
-import React from 'react'
 
-const Home = () => {
+const Home = ({posts}) => {
   return (
-    <div>Home</div>
+    <main className="Home">
+      
+    </main>
   )
 }
 
