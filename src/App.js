@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 import Home from './Home';
 import NewPost from './NewPost';
 import PostPage from './PostPage';
@@ -43,6 +44,16 @@ const App = () => {
   const [postTitle, setPostTitle] = useState('')
   const [postBody, setPostBody] = useState('')
 
+  useEffect(() => {
+    const filterResult = posts.filter(post => 
+        post.body.toLowerCase().includes(search.toLowerCase()) 
+        || 
+        post.title.toLowerCase().includes(search.toLowerCase()))
+        setSearchResult(filterResult.reverse());
+
+  }, [posts, search]);
+
+
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
@@ -50,14 +61,25 @@ const App = () => {
     setPosts(postLists)
     navigate('/')
   }
+
   const handleSubmit = (e) => {
-    e.preventDefault()
+      e.preventDefault();
+      const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
+      const date = format(new Date(), 'MMMM dd, yyyy pp')
+      const NewPost = {id, title: postTitle, date, body: postBody};
+      const allPost = [...posts, NewPost]
+      setPosts(allPost)
+      setPostTitle('')
+      setPostBody('');
+      navigate('/')
+
   }
 
   return (
       <Routes>
-          <Route path='/' element={<HomeLayout />}>
-              <Route index element={<Home posts={posts} />} />
+          <Route path='/' element={<HomeLayout search={search} setSearch=
+          {setSearch}/>}>
+              <Route index element={<Home posts={searchResult} />} />
 
               <Route path='/post' >
                   <Route index element={<NewPost

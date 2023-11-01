@@ -2,7 +2,12 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div>About</div>
+    <main className='About'> 
+        <h2>About</h2>
+        <p style={{ marginTop: "2rem"}}> This app is part of react lessons at vDLT Africa</p>
+
+    </main>
+
   )
 }
 
