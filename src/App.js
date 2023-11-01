@@ -50,8 +50,8 @@ const App = () => {
     setPosts(postLists)
     navigate('/')
   }
-  const handleSubmit = () => {
-    
+  const handleSubmit = (e) => {
+    e.preventDefault()
   }
 
   return (
