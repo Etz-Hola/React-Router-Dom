@@ -9,6 +9,7 @@ import Missing from "./Missing";
 import About from "./About";
 import HomeLayout from "./HomeLayout";
 import api from "./api/posts";
+import EditPost from "./EditPost";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -76,20 +77,21 @@ const App = () => {
     }
   };
 
-  const handleEdit = async () => {
+  const handleEdit = async (id) => {
     const date = format(new Date(), "MMMM dd, yyyy pp");
     const updatedPost = { id, title: editTitle, date, body: editBody };
     try {
       const response = await api.put(`/posts/${id}`, updatedPost);
-      setPosts(posts.map(post => post.id === id ? {...response.data} : post));  
-      setEditTitle('')
-      setEditBody('')
-      navigate('/')    
+      setPosts(
+        posts.map((post) => (post.id === id ? { ...response.data } : post))
+      );
+      setEditTitle("");
+      setEditBody("");
+      navigate("/");
     } catch (error) {
-      console.log(`Error: ${error.message}`);      
+      console.log(`Error: ${error.message}`);
     }
-
-  }
+  };
 
   return (
     <Routes>
@@ -98,7 +100,6 @@ const App = () => {
         element={<HomeLayout search={search} setSearch={setSearch} />}
       >
         <Route index element={<Home posts={searchResult} />} />
-
         <Route path="/post">
           <Route
             index
@@ -118,6 +119,19 @@ const App = () => {
           />
         </Route>
 
+        <Route
+          path="/edit/:id"
+          element={
+            <EditPost
+              posts={posts}
+              handleEdit={handleEdit}
+              editTitle={editTitle}
+              setEditTitle={setEditTitle}
+              editBody={editBody}
+              setEditBody={setEditBody}
+            />
+          }
+        />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<Missing />} />
       </Route>
