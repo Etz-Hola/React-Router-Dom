@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+
 import Home from './Home';
 import NewPost from './NewPost';
 import PostPage from './PostPage';
 import Missing from './Missing';
 import About from './About';
 import HomeLayout from './HomeLayout';
+import api from './api/posts';
 
 
 const App = () => {
@@ -27,25 +29,57 @@ const App = () => {
 
   }, [posts, search]);
 
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await api.get('/posts');
+        setPosts(response.data);
+
+      } catch (error) {
+        if (error.message) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else {
+          console.log(`Error: ${error.message}`);
+        }
+      }
+    }
+    fetchPost()
+
+  }, [])
+
 
   const navigate = useNavigate();
 
-  const handleDelete = (id) => {
-    const postLists = posts.filter(post => post.id !== id)
-    setPosts(postLists)
-    navigate('/')
+  const handleDelete =async (id) => {
+    try {
+      await api.delete(`/posts/${id}`)
+      const postLists = posts.filter((post) => post.id !== id)
+      setPosts(postLists)
+      navigate('/')
+    } catch (error) {
+      console.log(`Error: ${error.message}`);      
+    }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
       e.preventDefault();
       const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
       const date = format(new Date(), 'MMMM dd, yyyy pp')
-      const NewPost = {id, title: postTitle, date, body: postBody};
-      const allPost = [...posts, NewPost]
-      setPosts(allPost)
-      setPostTitle('')
-      setPostBody('');
-      navigate('/')
+      const newPost = {id, title: postTitle, date, body: postBody};
+      try {
+        const response = await api.post('/posts', newPost);
+        const allPost = [...posts, response.data]
+        setPosts(allPost)
+        setPostTitle('')
+        setPostBody('');
+        navigate('/')
+        
+      } catch (error) {
+        console.log(`Error: ${error.message}`);
+      }
+     
 
   }
 
