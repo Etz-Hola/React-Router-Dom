@@ -12,33 +12,7 @@ import HomeLayout from './HomeLayout';
 const App = () => {
 
  
-  const [posts, setPosts] = useState([
-    {
-      id:1,
-      title: 'Adeshola',
-      date: 'July 01, 2021 11:17:36 AM',
-      body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum laborum, debitis fugit necessitatibus minima molestiae. Vero natus eaque excepturi dolor dignissimos numquam voluptatibus dolorum provident.'
-    },
-    {
-      id:2,
-      title: 'Adesoji',
-      date: 'July 19, 2024 04:11:36 PM',
-      body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, aspernatur!'
-    },
-    {
-      id:3,
-      title: 'Adesoye',
-      date: 'September 28, 2021 01:17:36 AM',
-      body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis voluptates incidunt inventore doloribus!'
-    },
-    {
-      id:4,
-      title: 'C++',
-      date: 'August 17, 2020 06:55:55 PM',
-      body: 'C++ is an object-oriented programming language which gives a clear structure to programs and allows code to be reused, lowering development costs. C++ is portable and can be used to develop applications that can be adapted to multiple platforms. C++ is fun and easy to learn!'
-    }
-
-  ])
+  const [posts, setPosts] = useState([])
    const [search, setSearch] = useState('')
   const [searchResult, setSearchResult ] = useState([])
   const [postTitle, setPostTitle] = useState('')
