@@ -21,6 +21,8 @@ const App = () => {
   const [editTitle, setEditTitle] = useState("");
   const [editBody, setEditBody] = useState("");
 
+  const { width } = useWindowSize();
+
   useEffect(() => {
     const filterResult = posts.filter(
       (post) =>
@@ -98,7 +100,7 @@ const App = () => {
     <Routes>
       <Route
         path="/"
-        element={<HomeLayout search={search} setSearch={setSearch} />}
+        element={<HomeLayout search={search} width={width} setSearch={setSearch} />}
       >
         <Route index element={<Home posts={searchResult} />} />
         <Route path="/post">
